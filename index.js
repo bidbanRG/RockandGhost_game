@@ -14,7 +14,17 @@ var plate = document.getElementById('plate');
 plate.style.top = `${HEIGHT - above}px`;
 var plateX = 0;
 plate.style.left = `${plateX}px`
-let alpha = 0;
+let gamma = 0;
+var moveX = 0;
+var valX = 45;
+var moveY = 0;
+var valY = 38;
+
+var plateH = WIDTH < 768 ? 20 : 40;
+var plateW = WIDTH < 768 ? 100 : 150
+var ghost = WIDTH < 768 ? 40 : 80
+alert("Let's Start");
+
 
 var ref = window.addEventListener('mousemove',(e) => {
  	 var x = e.clientX;
@@ -32,27 +42,19 @@ var ref = window.addEventListener('mousemove',(e) => {
    function handleOrientation(event) {
       
     if(WIDTH <= 768){
-         alpha = event.alpha;
-      	 plateX = plateX + parseInt((270 - alpha) / 10);
+         gamma = event.gamma;
+      	 plateX = plateX + parseInt((gamma));
       	 plateX = Math.max(plateX,0);
       	 plateX = Math.min(plateX,WIDTH - plateW - 2);
       	 plate.style.left = `${plateX}px`
-         document.querySelector('h4').innerText = alpha + "->" + plateX;
+         document.querySelector('h4').innerText = gamma + "->" + plateX;
       } 
       
   }
 
 
 
-var moveX = 0;
-var valX = 45;
-var moveY = 0;
-var valY = 38;
 
-var plateH = WIDTH < 768 ? 20 : 40;
-var plateW = WIDTH < 768 ? 100 : 150
-var ghost = WIDTH < 768 ? 40 : 80
-alert("Let's Start");
 
 
 
