@@ -13,7 +13,7 @@ window.addEventListener('resize',() => {
 var plate = document.getElementById('plate');
 plate.style.top = `${HEIGHT - above}px`;
 var plateX;
-var gamma = 0;
+let gamma = 0;
 
 var ref = window.addEventListener('mousemove',(e) => {
  	 var x = e.clientX;
@@ -32,8 +32,8 @@ var ref = window.addEventListener('mousemove',(e) => {
       
     if(WIDTH <= 768){
          gamma = event.gamma;
-      	 plateX = plateX + parseInt((gamma * WIDTH) / 100);
-         document.querySelector('h4').innerText = gamma + " " + plateX;
+      	 plateX = plateX + parseInt(gamma * 5);
+         document.querySelector('h4').innerText = gamma + "->" + plateX;
       } 
       
   }
