@@ -13,12 +13,30 @@ window.addEventListener('resize',() => {
 var plate = document.getElementById('plate');
 plate.style.top = `${HEIGHT - above}px`;
 var plateX;
+var gamma = 0;
+
 var ref = window.addEventListener('mousemove',(e) => {
  	 var x = e.clientX;
  	 plateX = x;
-    plate.style.left = `${x}px`  
+ 	 if(WIDTH > 768){
+
+        plate.style.left = `${x}px`  
+ 	 }
      
  })
+
+	
+
+	window.addEventListener("deviceorientation", handleOrientation, true);
+   function handleOrientation(event) {
+      
+      if(gamma != event.gamma) { 
+      	gamma = event.gamma;
+      	alert(gamma);
+      }
+  }
+
+
 
 var moveX = 0;
 var valX = 45;
@@ -29,7 +47,6 @@ var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
 var ghost = WIDTH < 768 ? 40 : 80
 alert("Let's Start");
-
 
 
 
