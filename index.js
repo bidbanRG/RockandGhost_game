@@ -30,10 +30,10 @@ var ref = window.addEventListener('mousemove',(e) => {
 	window.addEventListener("deviceorientation", handleOrientation, true);
    function handleOrientation(event) {
       
-      if(gamma != event.gamma) { 
-      	gamma = event.gamma;
-      	alert(gamma);
-      }
+    
+       gamma = event.gamma;
+      	document.querySelector('h1').innerText = gamma;
+      
   }
 
 
