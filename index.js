@@ -43,7 +43,7 @@ var ref = window.addEventListener('mousemove',(e) => {
       
     if(WIDTH <= 768){
          gamma = event.gamma;
-      	 plateX = plateX + parseInt((gamma / 5));
+      	 plateX = plateX + parseInt((gamma * 3));
       	 plateX = Math.max(plateX,0);
       	 plateX = Math.min(plateX,WIDTH - plateW - 2);
       	 plate.style.left = `${plateX}px`
