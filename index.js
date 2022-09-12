@@ -16,9 +16,9 @@ var plateX = 0;
 plate.style.left = `${plateX}px`
 let gamma = 0;
 var moveX = 0;
-var valX = WIDTH < 768 ? 20 : 40;
+var valX = WIDTH < 768 ? 10 : 40;
 var moveY = 0;
-var valY = WIDTH < 768 ? 15 : 38;
+var valY = WIDTH < 768 ? 10 : 38;
 
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
@@ -43,7 +43,7 @@ var ref = window.addEventListener('mousemove',(e) => {
       
     if(WIDTH <= 768){
          gamma = event.gamma;
-      	 plateX = plateX + parseInt((gamma / 50));
+      	 plateX = plateX + parseInt((gamma / 500));
       	 plateX = Math.max(plateX,0);
       	 plateX = Math.min(plateX,WIDTH - plateW - 2);
       	 plate.style.left = `${plateX}px`
