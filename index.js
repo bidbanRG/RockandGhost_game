@@ -12,8 +12,8 @@ window.addEventListener('resize',() => {
 
 var plate = document.getElementById('plate');
 plate.style.top = `${HEIGHT - above}px`;
-var plateX;
-let gamma = 0;
+var plateX = WIDTH / 2 - (plateW / 2);
+let alpha = 0;
 
 var ref = window.addEventListener('mousemove',(e) => {
  	 var x = e.clientX;
@@ -31,9 +31,9 @@ var ref = window.addEventListener('mousemove',(e) => {
    function handleOrientation(event) {
       
     if(WIDTH <= 768){
-         gamma = event.gamma;
-      	 plateX = plateX + parseInt(gamma * 5);
-         document.querySelector('h4').innerText = gamma + "->" + plateX;
+         alpha = event.alpha;
+      	 plateX = plateX + parseInt(alpha * 5);
+         document.querySelector('h4').innerText = alpha + "->" + plateX;
       } 
       
   }
