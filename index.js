@@ -32,8 +32,8 @@ var ref = window.addEventListener('mousemove',(e) => {
       
     if(WIDTH <= 768){
          gamma = event.gamma;
-      	 plateX = plateX + (gamma * WIDTH) / 100;
-         document.querySelector('h4').innerText = plateX;
+      	 plateX = plateX + parseInt((gamma * WIDTH) / 100);
+         document.querySelector('h4').innerText = gamma + " " + plateX;
       } 
       
   }
