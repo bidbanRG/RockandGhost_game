@@ -33,9 +33,9 @@ var ref = window.addEventListener('mousemove',(e) => {
       
     if(WIDTH <= 768){
          alpha = event.alpha;
-      	 plateX = plateX + parseInt(alpha / 10)  * 5;
+      	 plateX = plateX + parseInt((270 - alpha) / 10);
       	 plateX = Math.max(plateX,0);
-      	 plateX = Math.min(plateX,WIDTH);
+      	 plateX = Math.min(plateX,WIDTH - plateW - 2);
       	 plate.style.left = `${plateX}px`
          document.querySelector('h4').innerText = alpha + "->" + plateX;
       } 
