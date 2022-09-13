@@ -25,7 +25,7 @@ var valY = WIDTH < 768 ? 10 : 38;
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
 var ghost = WIDTH < 768 ? 55 : 80
-alert(`Let's Start the Game Save the ghost from falling into the water...So Move the accordingly Rock `);
+alert(`Start the Game... Save the ghost from falling into the water...So Move the accordingly Rock `);
 var Audio = document.querySelector('audio');
 console.log(Audio);
 
@@ -46,7 +46,7 @@ var ref = window.addEventListener('mousemove',(e) => {
     var x = event.touches[0].clientX;
      plateX = x - (plateW / 2);
      plateX = Math.max(plateX,0);
-     plateX = Math.min(WIDTH,plateX);
+     plateX = Math.min(WIDTH,plateX + plateW);
      if(WIDTH < 768){
 
         plate.style.left = `${plateX}px`  
