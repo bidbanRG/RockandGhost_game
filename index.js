@@ -44,9 +44,9 @@ var ref = window.addEventListener('mousemove',(e) => {
 	
  window.addEventListener('touchmove',(event) => {
     var x = event.touches[0].clientX;
-     plateX = x - (plateW / 2);
+     plateX = x - plateW;
      plateX = Math.max(plateX,0);
-     plateX = Math.min(WIDTH,plateX + plateW + 2);
+     plateX = Math.min(WIDTH - plateW,plateX);
      if(WIDTH < 768){
 
         plate.style.left = `${plateX}px`  
