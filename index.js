@@ -1,6 +1,6 @@
 
 var box = document.getElementById('box');
-let version = "2.4";
+let version = "2.5";
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
 var score = document.getElementById('score');
@@ -65,8 +65,8 @@ let Interval = setInterval(() => {
 
    if(TIME % 10000 === 0){
 
-    valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 4);
-    valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 3 : 5);
+    valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 1 : 2);
+    valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valY < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 4);
          point = point + (TIME / 10000) + 10;
          points += point;
         score.innerHTML = `<h3>  Score: ${points}  </h3>`;
@@ -74,7 +74,7 @@ let Interval = setInterval(() => {
 
      moveX += valX;
      moveY += valY;
-     if(moveY + ghost  >= HEIGHT){
+     if(moveY + ghost  >= HEIGHT  ){
          
     	  box.firstElementChild.setAttribute('src','over.png');
           box.style.transform = `rotate(${ 135 * (valX < 0 ? -1 : 1) }deg)`
