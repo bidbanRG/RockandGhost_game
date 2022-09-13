@@ -15,7 +15,7 @@ plate.style.top = `${HEIGHT - above}px`;
 var plateX = 0;
 plate.style.left = `${plateX}px`
 let gamma = 0;
-var moveX = 0;
+var moveX = Math.random() * (WIDTH + 1);
 var valX = WIDTH < 768 ? 10 : 40;
 var moveY = 0;
 var valY = WIDTH < 768 ? 10 : 38;
@@ -23,7 +23,7 @@ var valY = WIDTH < 768 ? 10 : 38;
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
 var ghost = WIDTH < 768 ? 55 : 80
-alert("Let's Start v2");
+alert("Let's Start v2.1");
 
 
 var ref = window.addEventListener('mousemove',(e) => {
