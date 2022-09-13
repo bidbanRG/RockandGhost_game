@@ -1,9 +1,10 @@
 
 var box = document.getElementById('box');
-let version = "2.2";
+let version = "2.4";
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
-
+var score = document.getElementById('score');
+document.getElementById('maxscore').innerHTML = `<h3> Max Score: ${localStorage.getItem('maxscore') || 0} </h3>`; 
 window.addEventListener('resize',() => {
 	HEIGHT = window.innerHeight;
 	WIDTH = window.innerWidth;
@@ -57,15 +58,18 @@ var ref = window.addEventListener('mousemove',(e) => {
 
 
 let TIME = 100;
-
+let points = 0;
+point = 0;
 let Interval = setInterval(() => {
 
 
-   if(TIME % 7000 === 0){
+   if(TIME % 10000 === 0){
 
     valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 4);
     valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 3 : 5);
-        
+         point = point + (TIME / 10000) + 10;
+         points += point;
+        score.innerHTML = `<h3>  Score: ${points}  </h3>`;
    }
 
      moveX += valX;
@@ -76,9 +80,12 @@ let Interval = setInterval(() => {
           box.style.transform = `rotate(${ 135 * (valX < 0 ? -1 : 1) }deg)`
          
          clearInterval(Interval);
+       if(points > localStorage.getItem('maxscore')){
+         localStorage.setItem('maxscore',points);
+    	  return  alert(`Game Over, But Hurray New MAX score ${points} :)`);
+       }
 
-    	  return  alert("GameOver");
-      
+        return  alert(` score ${points} :)`);
     }
     
   else{
