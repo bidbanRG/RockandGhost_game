@@ -1,6 +1,6 @@
 
 var box = document.getElementById('box');
-
+let version = "2.2";
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
 
@@ -23,7 +23,7 @@ var valY = WIDTH < 768 ? 10 : 38;
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
 var ghost = WIDTH < 768 ? 55 : 80
-alert("Let's Start v2.1");
+alert(`Let's Start version${version}`);
 
 
 var ref = window.addEventListener('mousemove',(e) => {
