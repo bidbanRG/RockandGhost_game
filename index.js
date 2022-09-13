@@ -1,5 +1,6 @@
 
 var box = document.getElementById('box');
+
 let version = "3";
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
@@ -24,8 +25,9 @@ var valY = WIDTH < 768 ? 10 : 38;
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
 var ghost = WIDTH < 768 ? 55 : 80
-alert(`Let's Start version${version}`);
-
+alert(`Let's Start the Game Save the ghost from falling into the water...So Move the accordingly Rock `);
+var Audio = document.querySelector('audio');
+console.log(Audio);
 
 var ref = window.addEventListener('mousemove',(e) => {
  	 var x = e.clientX;
@@ -37,30 +39,17 @@ var ref = window.addEventListener('mousemove',(e) => {
      
  })
 
-	plate.addEventListener("drag",(e) => {
-        console.log('gragging',e);
-    })
+	
 
-	// window.addEventListener("deviceorientation", handleOrientation, false);
- //   function handleOrientation(event) {
-      
- //    if(WIDTH <= 768){
- //         gamma = event.gamma;
- //      	 plateX = plateX + (parseInt((gamma)) / 10);
- //      	 plateX = Math.max(plateX,0);
- //      	 plateX = Math.min(plateX,WIDTH - plateW - 2);
- //      	 plate.style.left = `${plateX}px`
-         
- //      } 
-      
- //  }
-
+	
  window.addEventListener('touchmove',(event) => {
     var x = event.touches[0].clientX;
-     plateX = x;
+     plateX = x - (plateW / 2);
+     plateX = Math.max(plateX,0);
+     plateX = Math.min(WIDTH,plateX);
      if(WIDTH < 768){
 
-        plate.style.left = `${x}px`  
+        plate.style.left = `${plateX}px`  
      }
  })
 
@@ -69,26 +58,33 @@ var ref = window.addEventListener('mousemove',(e) => {
 let TIME = 100;
 let points = 0;
 point = 0;
-let Interval = setInterval(() => {
+
+
+const GameOn = () => {
 
 
    if(TIME % 10000 === 0){
 
-    valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 1 : 2);
-    valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valY < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 4);
+    valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 3);
+    valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valY < 0 ? -1 : 1) * (WIDTH < 768 ? 4 : 6);
          point = point + (TIME / 10000) + 10;
          points += point;
         score.innerHTML = `<h3>  Score: ${points}  </h3>`;
    }
 
-     moveX += valX;
-     moveY += valY;
+    
    let passed = false;
      if(moveX + ghost > WIDTH || moveX < 0){
-       valX = -valX;    	
+       valX = -valX;        
      }
-      if( moveY < 0 || moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above ){
-          	valY = -valY;
+     if(moveY < 0){
+       valY = -valY;
+     }
+      if(moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above ){
+         
+           valY = -valY;
+         
+
             passed = true;
     }
 
@@ -110,21 +106,27 @@ if(moveY + ghost >= HEIGHT && !passed  ){
      
 
     if(HEIGHT / 2 > moveY){
-    	if(valY < 0)
-    	box.firstElementChild.setAttribute('src','g2.png');
+        if(valY < 0)
+        box.firstElementChild.setAttribute('src','g2.png');
         else box.firstElementChild.setAttribute('src','g3.png');
     }else{
-    	if(valY < 0)
-    		box.firstElementChild.setAttribute('src','g1.png');
-    	else box.firstElementChild.setAttribute('src','g4.png');
+        if(valY < 0)
+            box.firstElementChild.setAttribute('src','g1.png');
+        else box.firstElementChild.setAttribute('src','g4.png');
     }
 
- 
+    moveX += valX;
+     moveY += valY;
 
-	box.style.left = `${moveX}px`;
-	box.style.top = `${moveY}px`;
+    box.style.left = `${moveX}px`;
+    box.style.top = `${moveY}px`;
 
     TIME += 100;
 
-},100)
+}
+
+
+    let Interval = setInterval(GameOn,100)
+
+
 
