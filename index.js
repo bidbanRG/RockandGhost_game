@@ -56,9 +56,18 @@ var ref = window.addEventListener('mousemove',(e) => {
 
 
 
-
+let TIME = 100;
 
 let Interval = setInterval(() => {
+
+
+   if(TIME % 7000 === 0){
+
+    valX = (valX < 0 ? -1 : 1) * Math.abs(valX) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 2 : 4);
+    valY = (valY < 0 ? -1 : 1) * Math.abs(valY) + (valX < 0 ? -1 : 1) * (WIDTH < 768 ? 3 : 5);
+        
+   }
+
      moveX += valX;
      moveY += valY;
      if(moveY + ghost  >= HEIGHT){
@@ -98,6 +107,8 @@ let Interval = setInterval(() => {
 
 	box.style.left = `${moveX}px`;
 	box.style.top = `${moveY}px`;
+
+    TIME += 100;
 
 },100)
 
