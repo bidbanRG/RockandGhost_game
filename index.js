@@ -1,6 +1,6 @@
 
 var box = document.getElementById('box');
-let version = "2.5";
+let version = "3";
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
 var score = document.getElementById('score');
@@ -37,23 +37,32 @@ var ref = window.addEventListener('mousemove',(e) => {
      
  })
 
-	
+	plate.addEventListener("drag",(e) => {
+        console.log('gragging',e);
+    })
 
-	window.addEventListener("deviceorientation", handleOrientation, false);
-   function handleOrientation(event) {
+	// window.addEventListener("deviceorientation", handleOrientation, false);
+ //   function handleOrientation(event) {
       
-    if(WIDTH <= 768){
-         gamma = event.gamma;
-      	 plateX = plateX + (parseInt((gamma)) / 10);
-      	 plateX = Math.max(plateX,0);
-      	 plateX = Math.min(plateX,WIDTH - plateW - 2);
-      	 plate.style.left = `${plateX}px`
+ //    if(WIDTH <= 768){
+ //         gamma = event.gamma;
+ //      	 plateX = plateX + (parseInt((gamma)) / 10);
+ //      	 plateX = Math.max(plateX,0);
+ //      	 plateX = Math.min(plateX,WIDTH - plateW - 2);
+ //      	 plate.style.left = `${plateX}px`
          
-      } 
+ //      } 
       
-  }
+ //  }
 
+ window.addEventListener('touchmove',(event) => {
+    var x = event.touches[0].clientX;
+     plateX = x;
+     if(WIDTH < 768){
 
+        plate.style.left = `${x}px`  
+     }
+ })
 
 
 
@@ -74,30 +83,30 @@ let Interval = setInterval(() => {
 
      moveX += valX;
      moveY += valY;
-     if(moveY + ghost  >= HEIGHT  ){
+   let passed = false;
+     if(moveX + ghost > WIDTH || moveX < 0){
+       valX = -valX;    	
+     }
+      if( moveY < 0 || moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above ){
+          	valY = -valY;
+            passed = true;
+    }
+
+if(moveY + ghost >= HEIGHT && !passed  ){
          
-    	  box.firstElementChild.setAttribute('src','over.png');
+          box.firstElementChild.setAttribute('src','over.png');
           box.style.transform = `rotate(${ 135 * (valX < 0 ? -1 : 1) }deg)`
          
          clearInterval(Interval);
        if(points > localStorage.getItem('maxscore')){
          localStorage.setItem('maxscore',points);
-    	  return  alert(`Game Over, But Hurray New MAX score ${points} :)`);
+          return  alert(`Game Over, But Hurray New MAX score ${points} :)`);
        }
 
         return  alert(` score ${points} :)`);
     }
-    
-  else{
-   
-     if(moveX + ghost > WIDTH || moveX < 0){
-       valX = -valX;    	
-    }
-      if( moveY < 0 || moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above ){
-          	valY = -valY;
-    }
      
-}
+
      
 
     if(HEIGHT / 2 > moveY){
