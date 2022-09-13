@@ -22,8 +22,8 @@ var valY = WIDTH < 768 ? 10 : 38;
 
 var plateH = WIDTH < 768 ? 20 : 40;
 var plateW = WIDTH < 768 ? 100 : 150
-var ghost = WIDTH < 768 ? 40 : 80
-alert("Let's Start v1");
+var ghost = WIDTH < 768 ? 55 : 80
+alert("Let's Start v2");
 
 
 var ref = window.addEventListener('mousemove',(e) => {
@@ -59,30 +59,30 @@ var ref = window.addEventListener('mousemove',(e) => {
 
 
 let Interval = setInterval(() => {
-     
-     if(moveY + 80 + 30 >= HEIGHT){
+     moveX += valX;
+     moveY += valY;
+     if(moveY + ghost  >= HEIGHT){
          
     	  box.firstElementChild.setAttribute('src','over.png');
           box.style.transform = `rotate(${ 135 * (valX < 0 ? -1 : 1) }deg)`
-      
+         
          clearInterval(Interval);
 
     	  return  alert("GameOver");
       
     }
     
-
+  else{
    
-     if(moveX + 90 > WIDTH || moveX < 0){
+     if(moveX + ghost > WIDTH || moveX < 0){
        valX = -valX;    	
     }
-      if( moveY < 0 || moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above - 10){
+      if( moveY < 0 || moveX + ghost  > plateX && moveX + ghost < plateX + plateW && moveY + ghost >= HEIGHT - above ){
           	valY = -valY;
     }
      
-
-     moveX += valX;
-     moveY += valY;
+}
+     
 
     if(HEIGHT / 2 > moveY){
     	if(valY < 0)
