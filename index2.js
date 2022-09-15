@@ -115,6 +115,7 @@ class Ghost {
   
      
      ctx.drawImage(ghost,this.x,this.y,this.len,this.len);
+     console.log('drawn');
    }
    update(x,y,Radius,HEIGHT){
       this.x = x;
@@ -125,10 +126,10 @@ class Ghost {
 }
 
 
-const ghost = new Ghost(x,y,Radius,HEIGHT)
 
 
-
+ const ghost = new Ghost(x,y,Radius,HEIGHT)
+var ref;
 
  function animate(){
 
@@ -137,23 +138,21 @@ const ghost = new Ghost(x,y,Radius,HEIGHT)
      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
     ctx.beginPath();
 
-     const image = new Image();
+       const image = new Image();
        image.src = 'back.png';
        ctx.drawImage(image,0,0,WIDTH, HEIGHT);
-      
+     
 
      ghost.update(x,y,Radius,HEIGHT);
 
- const ghost = new Image();
-    
-        ghost.src = "q1.png";
+
   
    
    
      if(y / 2 >= HEIGHT){
-       ctx.drawImage(ghost,0,0,150,150,x,y,Radius,Radius);
+       ghost.draw("g1.png");
      }
-   else ctx.drawImage(ghost,0,150,150,150,x,y,Radius,Radius);
+   else ghost.draw("g2.png");
 
 
  ctx.fillStyle = 'blue';
@@ -184,7 +183,7 @@ ctx.fillRect(plateX,HEIGHT - 100,plateWidth,plateHeight);
 }
 
 
-var ref;
+
 
 
   
@@ -196,6 +195,7 @@ window.addEventListener('keydown', (e) => {
           mouseEvent = (event) => {
             let {x,y} = event;
             plateX = x;
+            console.log(plateX);
         }
       window.addEventListener('mousemove',mouseEvent);
      animate();
